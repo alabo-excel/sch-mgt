@@ -27,7 +27,7 @@
             <h3>Dashboard</h3>
           </v-col>
           <v-col v-for="form in forms" :key="form.title" cols="2">
-            <v-card class="mx-auto p-5 text-left" max-width="400">
+            <v-card class="mx-auto p-5 text-left" max-width="400" @click="form.event">
               <div>
                 <v-icon large right>
                   {{ form.icon }}
@@ -45,22 +45,7 @@
         </v-row>
       </v-col>
     </v-row>
-    <v-dialog v-model="dialog" persistent max-width="600">
-      <v-card>
-        <idCard />
-
-        <v-card-actions>
-          <v-btn color="primary darken-1" text @click="imageConversion">
-            Convert
-          </v-btn>
-          <v-spacer></v-spacer>
-
-          <v-btn color="primary darken-1" text @click="dialog = false">
-            Close
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    
   </div>
 </template>
 
@@ -92,45 +77,39 @@ export default {
         },
       ],
       forms: [
-        { title: "Admission", icon: "mdi-school" },
-        { title: "SMS", icon: "mdi-message-alert" },
-        { title: "Fees ", icon: "mdi-cash" },
-        { title: "Transport", icon: "mdi-train-car" },
-        { title: "Certificate", icon: "mdi-certificate" },
-        { title: "Activities", icon: "mdi-calendar-multiple" },
-        { title: "Exam", icon: "mdi-pencil" },
-        { title: "Lesson Plan", icon: "mdi-floor-plan" },
-        { title: "Home Work", icon: "mdi-pencil" },
-        { title: "News", icon: "mdi-email-newsletter" },
-        { title: "Events ", icon: "mdi-calendar-multiple-check" },
-        { title: "Syllabus", icon: "mdi-message-reply" },
-        { title: "Messages", icon: "mdi-android-messages" },
-        { title: "Library", icon: "mdi-book" },
-        { title: "Results", icon: "mdi-counter" },
-        { title: "Bus Route", icon: "mdi-bus-double-decker" },
-        { title: "Visitors", icon: "mdi-account-child" },
-        { title: "Hostel", icon: "mdi-home-city" },
+        { title: "Admission", icon: "mdi-school", event: this.linkAdmission },
+        { title: "SMS", icon: "mdi-message-alert", event: null },
+        { title: "Fees ", icon: "mdi-cash", event: null },
+        { title: "Transport", icon: "mdi-train-car", event: null },
+        { title: "Certificate", icon: "mdi-certificate", event: this.linkCertificate },
+        { title: "Activities", icon: "mdi-calendar-multiple", event: null },
+        { title: "Exam", icon: "mdi-pencil", event: null },
+        { title: "Lesson Plan", icon: "mdi-floor-plan", event: null },
+        { title: "Home Work", icon: "mdi-pencil", event: null },
+        { title: "News", icon: "mdi-email-newsletter", event: null },
+        { title: "Events ", icon: "mdi-calendar-multiple-check", event: null },
+        { title: "Syllabus", icon: "mdi-message-reply", event: null },
+        { title: "Messages", icon: "mdi-android-messages", event: null },
+        { title: "Library", icon: "mdi-book", event: null },
+        { title: "Results", icon: "mdi-counter", event: this.linkResult },
+        { title: "Bus Route", icon: "mdi-bus-double-decker", event: null },
+        { title: "Visitors", icon: "mdi-account-child", event: null },
+        { title: "Hostel", icon: "mdi-home-city", event: null },
       ],
       right: null,
       dialog: false,
     };
   },
   methods: {
-    imageConversion() {
-      var preview = document.getElementById("preview");
-      var element = document.getElementById("my-card");
-      html2canvas(element, {
-        onrendered: function(canvas) {
-          preview.append(canvas);
-          getCanvas = canvas;
-        },
-      });
-      document.getElementById("my-card").style.display = "none";
-      document.getElementById("nameForm").style.display = "none";
+    linkAdmission(){
+      this.$router.push("/admission");
     },
-    openModal() {
-      dialog: true;
+    linkCertificate(){
+            this.$router.push("/certificate");
     },
+    linkResult(){
+            this.$router.push("/result");
+    }
   },
 };
 </script>
@@ -140,4 +119,4 @@ export default {
   background-color: rgb(220, 220, 220);
 }
 </style>
-F
+

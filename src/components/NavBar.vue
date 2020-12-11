@@ -131,7 +131,7 @@
             text
             @click="dialog = false; loginUser"
           >
-            Save
+            Continue
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -151,7 +151,8 @@ export default {
       email: ""
     }),
     methods:{
-      loginUser(){},
+      loginUser(){
+      },
       signupUser(){}
     }
 };

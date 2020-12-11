@@ -20,9 +20,9 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="list in lists" :key="list.name">
-                <td>{{ list.name }}</td>
-                <td>{{ list.score }}</td>
+              <tr v-for="(subject, index) in subjects" :key="index">
+                <td>{{ subject.course }}</td>
+                <td>{{ subject.score }}</td>
               </tr>
             </tbody>
           </template>
@@ -46,10 +46,14 @@ export default {
   },
   data() {
     return {
-      lists: [{ name: "Geography", score: "20" }],
     };
   },
   methods: {},
+  computed:{
+    subjects(){
+      return this.$store.state.subjects;
+    }
+  }
 };
 </script>
 
